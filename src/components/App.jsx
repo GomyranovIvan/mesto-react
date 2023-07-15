@@ -2,7 +2,7 @@ import Header from "./Header/Header";
 import Main from "./Main/Main";
 import Footer from "./Footer/Footer";
 import PopupWithForm from "./PopupWithForm/PopupWithForm";
-import PopupImage from "./PopupImage/PopupImage";
+import ImagePopup from "./ImagePopup/ImagePopup";
 import { useState } from "react";
 
 
@@ -115,8 +115,8 @@ function App() {
             </PopupWithForm>
             <PopupWithForm name="delete" title="Вы уверены?" titleButton="Да">
             </PopupWithForm>
-            <PopupImage card={selectedCard} isOpen={isImagePopup} onClose={closeAllPopups}>
-            </PopupImage>
+            <ImagePopup card={selectedCard} isOpen={isImagePopup} onClose={closeAllPopups}>
+            </ImagePopup>
         </div>
     );
 }
