@@ -9,7 +9,7 @@ export default function PopupWithForm({ name, title, titleButton, children, isOp
                 <form
                     className="popup__form"
                     name={name}
-                    noValidate=""
+                    // noValidate=""
                 >
                     <h2 className="popup__title">{title}</h2>
                     {children}

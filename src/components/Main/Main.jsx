@@ -17,7 +17,8 @@ export default function Main({ onAvatar, onEditProfile, onAddCard, onCardClick }
                 setUserAvatar(dataUser.avatar)
                 dataCard.forEach((item) => item.myid = dataUser._id)
                 setCards(dataCard)
-            });
+            })
+            .catch((error) => console.error(`error while creating page initial data ${error}`))
     }, [])
 
     return (
@@ -38,9 +39,7 @@ export default function Main({ onAvatar, onEditProfile, onAddCard, onCardClick }
             <section className="cards">{cards.map((item) => {
                 return (
                     //реализуй кей
-                    <div className="cards__item" key={item._id}>
-                        <Card card={item} onCardClick={onCardClick} />
-                    </div>
+                        <Card key={item._id} card={item} onCardClick={onCardClick} />
                 )
             })}</section>
         </main>
