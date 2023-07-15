@@ -1,0 +1,7 @@
+.cards__inner {
+    margin: 25px auto 31px auto;
+    display: flex;
+    width: 246px;
+    align-items: center;
+    justify-content: space-between;
+}

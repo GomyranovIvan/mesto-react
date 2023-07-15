@@ -1,0 +1,8 @@
+.popup__figure {
+    margin: auto;
+    text-align: center;
+    max-height: 75vh;
+    max-width: 75vw;
+    position: relative;
+    
+}
