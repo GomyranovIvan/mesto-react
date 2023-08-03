@@ -1,47 +1,36 @@
-import { useEffect, useState } from "react"
-import api from "../../utils/api"
+import { useContext } from "react"
 import Card from "../Card/Card"
+import CurrentUserContext from "../../contexts/CurrentUserContext"
+import Spinner from "../Spinner/Spinner"
 
-export default function Main({ onAvatar, onEditProfile, onAddCard, onCardClick }) {
+export default function Main({ onAvatar, onEditProfile, onAddCard, onDelete, onCardClick, cards, isLoading }) {
+    
+    const currentUser = useContext(CurrentUserContext)
 
-    const [userName, setUserName] = useState('')
-    const [userDescription, setUserDescription] = useState('')
-    const [userAvatar, setUserAvatar] = useState('')
-    const [cards, setCards] = useState([])
-
-    useEffect(() => {
-        Promise.all([api.getInfo(), api.getCards()])
-            .then(([dataUser, dataCard]) => {
-                setUserName(dataUser.name)
-                setUserDescription(dataUser.about)
-                setUserAvatar(dataUser.avatar)
-                dataCard.forEach((item) => item.myid = dataUser._id)
-                setCards(dataCard)
-            })
-            .catch((error) => console.error(`error while creating page initial data ${error}`))
-    }, [])
 
     return (
         <main>
             {/* Секция с отображением профиля */}
             <section className="profile">
                 <div className="profile__avatar-overlay">
-                    <img src={userAvatar} className="profile__avatar" alt="Аватар" onClick={onAvatar} />
+                    <img src={currentUser.avatar ? currentUser.avatar : "#"} className="profile__avatar" alt="Аватар" onClick={onAvatar} />
                 </div>
                 <div className="profile__info">
-                    <h1 className="profile__name">{userName}</h1>
+                    <h1 className="profile__name">{currentUser.name ? currentUser.name : ""}</h1>
                     <button className="profile__button-edit" type="button" onClick={onEditProfile} />
-                    <p className="profile__description">{userDescription}</p>
+                    <p className="profile__description">{currentUser.about ? currentUser.about : ""}</p>
                 </div>
                 <button className="profile__button-add" type="button" onClick={onAddCard} />
             </section>
             {/* Место где отображаются карточки */}
-            <section className="cards">{cards.map((item) => {
+            <section className="cards">
+                {isLoading ? <Spinner />  : cards.map((item) => {
                 return (
-                    //реализуй кей
-                        <Card key={item._id} card={item} onCardClick={onCardClick} />
+                        <Card key={item._id} card={item} onCardClick={onCardClick} onDelete={onDelete} />
                 )
-            })}</section>
+            })}
+            {/* <Spinner /> */}
+            </section>
         </main>
     )
 }

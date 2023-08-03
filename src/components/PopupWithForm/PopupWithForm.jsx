@@ -1,7 +1,7 @@
 export default function PopupWithForm({ name, title, titleButton, children, isOpen, onClose }) {
     return (
-        <div className={`popup popup_content_${name} ${isOpen && 'popup_opened'}`}>
-            <div className="popup__container">
+        <div className={`popup popup_content_${name} ${isOpen && 'popup_opened'}`} onMouseDown={onClose}>
+            <div className="popup__container" onMouseDown={(evt => evt.stopPropagation())}>
                 <button
                     className="popup__close" type="button"
                     onClick={onClose}
