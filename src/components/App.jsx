@@ -97,9 +97,10 @@ function App() {
                     return card._id !== deleteCardId
                 }))
                 closeAllPopups()
-                setIsSend(false)
+                
             })
             .catch((err) => console.error(err))
+            .finally(setIsSend(false))
     }
 
     function handleUpdateUser(dataUser, reset) {
@@ -109,9 +110,9 @@ function App() {
                 setCurrentUser(res)
                 closeAllPopups()
                 reset()
-                setIsSend(false)
             })
             .catch(err => console.error(`error while editing profile ${err}`))
+            .finally(setIsSend(false))
     }
 
     function handleUpdateAvatar(dataUser, reset) {
@@ -121,9 +122,9 @@ function App() {
                 setCurrentUser(res)
                 closeAllPopups()
                 reset()
-                setIsSend(false)
             })
             .catch(err => console.error(`error while editing avatar ${err}`))
+            .finally(setIsSend(false))
     }
 
     function handleAddCard(dataCard, reset) {
@@ -133,9 +134,9 @@ function App() {
                 setCards([res, ...cards])
                 closeAllPopups()
                 reset()
-                setIsSend(false)
             })
             .catch(err => console.error(`error while adding card ${err}`))
+            .finally(setIsSend(false))
     }
 
     return (
