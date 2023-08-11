@@ -100,7 +100,7 @@ function App() {
                 
             })
             .catch((err) => console.error(err))
-            .finally(setIsSend(false))
+            .finally(() => setIsSend(false))
     }
 
     function handleUpdateUser(dataUser, reset) {
@@ -112,7 +112,7 @@ function App() {
                 reset()
             })
             .catch(err => console.error(`error while editing profile ${err}`))
-            .finally(setIsSend(false))
+            .finally(() => setIsSend(false))
     }
 
     function handleUpdateAvatar(dataUser, reset) {
@@ -124,7 +124,7 @@ function App() {
                 reset()
             })
             .catch(err => console.error(`error while editing avatar ${err}`))
-            .finally(setIsSend(false))
+            .finally(() => setIsSend(false))
     }
 
     function handleAddCard(dataCard, reset) {
@@ -136,7 +136,7 @@ function App() {
                 reset()
             })
             .catch(err => console.error(`error while adding card ${err}`))
-            .finally(setIsSend(false))
+            .finally(() => setIsSend(false))
     }
 
     return (
